@@ -25,4 +25,20 @@ export class TodosPage {
     ]
   }
 
+
+  setTodoStyles(item:TodoModel){
+    let styles = {
+      'text-decoration': item.isDone ? 'line-through': 'none',
+      'font-weight': item.isImportant ? "600" : 'normal'
+    };
+    return styles;
+  }
+
+  toogleTodo(todo:TodoModel){
+    todo.isDone = !todo.isDone;
+  }
+
+  showAddTodo(){
+
+  }
 }
