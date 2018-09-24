@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let todo of todoService.todos">
+    <ion-item-sliding *ngFor="let todo of todoService.todos | priorizedTodosPipe">
       <ion-item [ngStyle]="setTodoStyles(todo)">
           <ion-label>{{todo.description}}</ion-label>
           <ion-checkbox color="dark" [checked]="todo.isDone" (click)="toogleTodo(todo)"></ion-checkbox>

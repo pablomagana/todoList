@@ -13,10 +13,10 @@ export class TodoServiceProvider {
 
   getTodos(){
     this.todos = [
-      new TodoModel("this is an element"),
-      new TodoModel("this is an element", false),
-      new TodoModel("this is an element", false, true),
-      new TodoModel("this is an element", true, true)
+      new TodoModel("this is an element 1"),
+      new TodoModel("this is an element 2"),
+      new TodoModel("this is an element 3"),
+      new TodoModel("this is an element 4")
     ]
   }
 

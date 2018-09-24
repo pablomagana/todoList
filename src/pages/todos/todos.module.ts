@@ -6,7 +6,7 @@ import { TodosPage } from './todos';
     TodosPage,
   ],
   imports: [
-    IonicPageModule.forChild(TodosPage),
+    IonicPageModule.forChild(TodosPage)
   ],
 })
 export class TodosPageModule {}
