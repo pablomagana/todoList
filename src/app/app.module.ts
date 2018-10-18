@@ -8,16 +8,19 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { TodosPage } from '../pages/todos/todos';
 import { AddTaskModalPage } from '../pages/add-task-modal/add-task-modal';
+import {ListsPage} from '../pages/lists/lists';
 import { TodoServiceProvider } from '../shared/todo-service';
 
 import { PriorizedTodosPipe } from  '../pipes/priorized-todos/priorized-todos';
-
+import { DoneTodosPipe } from '../pipes/done-todos/done-todos';
 @NgModule({
   declarations: [
     MyApp,
     TodosPage,
     AddTaskModalPage,
-    PriorizedTodosPipe
+    PriorizedTodosPipe,
+    DoneTodosPipe,
+    ListsPage
   ],
   imports: [
     HttpModule,
@@ -28,7 +31,8 @@ import { PriorizedTodosPipe } from  '../pipes/priorized-todos/priorized-todos';
   entryComponents: [
     MyApp,
     TodosPage,
-    AddTaskModalPage
+    AddTaskModalPage,
+    ListsPage
   ],
   providers: [
     StatusBar,
