@@ -13,6 +13,7 @@ import { TodoServiceProvider } from '../shared/todo-service';
 
 import { PriorizedTodosPipe } from  '../pipes/priorized-todos/priorized-todos';
 import { DoneTodosPipe } from '../pipes/done-todos/done-todos';
+import { ListService} from '../shared/list-service';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,7 +39,8 @@ import { DoneTodosPipe } from '../pipes/done-todos/done-todos';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TodoServiceProvider
+    TodoServiceProvider,
+    ListService
   ]
 })
 export class AppModule {}

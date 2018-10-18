@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { TodosPage } from  '../todos/todos';
+import { ListService } from  '../../shared/list-service';
 
 @IonicPage()
 @Component({
@@ -9,7 +10,11 @@ import { TodosPage } from  '../todos/todos';
 })
 export class ListsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertController: AlertController,
+    public listsService:ListService) {
   }
 
   ionViewDidLoad() {
@@ -18,5 +23,34 @@ export class ListsPage {
 
   goToList(){
     this.navCtrl.push(TodosPage);
+  }
+
+  addNewList(name:string){
+    this.listsService.addList(name);
+  }
+
+  showAddList(){
+    let addListAlert = this.alertController.create({
+      title:"new list",
+      message:"nombre de la nueva lista",
+      inputs:[
+        {
+          name:"name",
+          placeholder:"name"
+        }
+      ],
+      buttons:[
+        {
+          text: "cancelar",
+          handler:data=>{}
+        },
+        {
+          text: "añadir",
+          handler: data =>{this.addNewList(data.name);}
+        }
+      ]
+    });
+
+    addListAlert.present();
   }
 }
