@@ -8,10 +8,10 @@ export class TodoServiceProvider {
   private todos: TodoModel[];
 
   constructor(public http: HttpModule) {
-    this.getTodos();
+    this.loadFromList();
   }
 
-  getTodos() {
+  public loadFromList() {
     this.todos = [
       new TodoModel("this is an element 1"),
       new TodoModel("this is an element 2"),

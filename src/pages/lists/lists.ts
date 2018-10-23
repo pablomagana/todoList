@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { TodosPage } from  '../todos/todos';
 import { ListService } from  '../../shared/list-service';
-
+import { ListModel} from '../../shared/list-model';
 @IonicPage()
 @Component({
   selector: 'page-lists',
@@ -21,8 +21,11 @@ export class ListsPage {
     console.log('ionViewDidLoad ListsPage');
   }
 
-  goToList(){
-    this.navCtrl.push(TodosPage);
+  goToList(list:ListModel){
+    this.navCtrl.push(TodosPage,
+      {
+        list
+      });
   }
 
   addNewList(name:string){
