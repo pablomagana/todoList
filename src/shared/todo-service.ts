@@ -8,16 +8,19 @@ export class TodoServiceProvider {
   private todos: TodoModel[];
 
   constructor(public http: HttpModule) {
-    this.loadFromList();
   }
 
-  public loadFromList() {
-    this.todos = [
-      new TodoModel("this is an element 1"),
-      new TodoModel("this is an element 2"),
-      new TodoModel("this is an element 3"),
-      new TodoModel("this is an element 4")
-    ];
+  public loadFromList(id:number) {
+    if(id<3){
+      this.todos = [
+        new TodoModel("this is an element 1"),
+        new TodoModel("this is an element 2"),
+        new TodoModel("this is an element 3"),
+        new TodoModel("this is an element 4")
+      ];
+    }else{
+      this.todos = [];
+    }
   }
 
   toogleTodo(todo: TodoModel) {

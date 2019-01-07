@@ -3,6 +3,7 @@ import { AlertController, IonicPage, NavController, NavParams} from 'ionic-angul
 import { TodosPage } from  '../todos/todos';
 import { ListService } from  '../../shared/list-service';
 import { ListModel} from '../../shared/list-model';
+
 @IonicPage()
 @Component({
   selector: 'page-lists',
@@ -23,9 +24,8 @@ export class ListsPage {
 
   goToList(list:ListModel){
     this.navCtrl.push(TodosPage,
-      {
-        list
-      });
+      { list }
+    );
   }
 
   addNewList(name:string){

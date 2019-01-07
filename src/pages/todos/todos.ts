@@ -30,7 +30,6 @@ export class TodosPage {
   ) {
     this.list =  this.navParams.get('list');
     this.todoService.loadFromList(this.list.id);
-
   }
 
   ionViewDidLoad() {}
