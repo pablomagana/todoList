@@ -1,21 +1,25 @@
-
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>lists</ion-title>
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>lists</ion-title> </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let list of listsService.lists" (click)="goToList(list)">{{list.name}}</ion-item>
+    <ion-item
+      *ngFor="let list of listsService.lists"
+      [ngClass]="{'selected-list':selectedList === list}"
+      (press)="selectList(list)"
+      (tap)="goToList(list)"
+      >{{ list.name }}</ion-item
+    >
   </ion-list>
-
 </ion-content>
-<ion-fab bottom right>
-  <button ion-fab (click)="showAddList()">
-    <ion-icon name="add"></ion-icon>
+<ion-fab bottom right *ngIf="selectedList">
+  <button ion-fab (click)="showRemoveList(selectedList)">
+    <ion-icon name="trash"></ion-icon>
   </button>
 </ion-fab>
+<ion-fab bottom right *ngIf="!selectedList">
+    <button ion-fab (click)="showAddList()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
