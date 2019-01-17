@@ -81,11 +81,20 @@ export class TodoServiceProvider {
         listId: todo.listId
       })
       .map(response => {
-        response.json();
+        return response.json();
       })
       .map(todo => {
         return TodoModel.fromJson(todo);
       })
+      .share();
+
+    return observable;
+  }
+
+  private deleteTodoFromSErver(id: number) {
+    let observable = this.http
+      .delete(`${URLSERVER}/todos/${id}`)
+      .map(response => response.json())
       .share();
 
     return observable;
@@ -117,9 +126,14 @@ export class TodoServiceProvider {
 
   toogleTodo(todo: TodoModel) {
     let updatedTodo = TodoModel.clone(todo);
-    todo.isDone = !todo.isDone;
+    updatedTodo.isDone = !todo.isDone;
 
-    return this.updateTodo(todo,updatedTodo).subscribe(()=>{},()=>{this.loadFromList(todo.listId)});
+    return this.updateTodo(todo, updatedTodo).subscribe(
+      () => {},
+      () => {
+        this.loadFromList(todo.listId);
+      }
+    );
   }
 
   addTodo(todo: TodoModel) {
@@ -146,10 +160,17 @@ export class TodoServiceProvider {
   }
 
   remove(todo: TodoModel) {
-    const index = this.todos.indexOf(todo);
-    this.todos = [
-      ...this.todos.slice(0, index),
-      ...this.todos.slice(index + 1)
-    ];
+    this.deleteTodoFromSErver(todo.id).subscribe(
+      () => {
+        const index = this.todos.indexOf(todo);
+        this.todos = [
+          ...this.todos.slice(0, index),
+          ...this.todos.slice(index + 1)
+        ];
+        this.saveLocally(todo.listId);
+      },
+      error =>
+        console.log("An error occurred while trying to remove the todo", error)
+    );
   }
 }
